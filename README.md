@@ -8,4 +8,4 @@ OR
 * Run application as jar with "java -jar target/{JAR_NAME}"
 
 # Documentation
-Available at "localhost:8080/swagger-ui.html" when application is up and running
+Available at "localhost:5000/swagger-ui.html" when application is up and running

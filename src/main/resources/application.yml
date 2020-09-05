@@ -5,3 +5,4 @@ springdoc:
 server:
   error:
     include-message: always
+  port: 5000

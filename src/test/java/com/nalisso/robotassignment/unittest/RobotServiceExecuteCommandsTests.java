@@ -4,11 +4,9 @@ import com.nalisso.robotassignment.service.internal.model.Direction;
 import com.nalisso.robotassignment.service.internal.model.MovementResult;
 import com.nalisso.robotassignment.service.internal.model.Position;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 final class RobotServiceExecuteCommandsTests extends RobotServiceTests {
 
     @Test
