@@ -3,11 +3,10 @@ package com.nalisso.robotassignment.unittest;
 import com.nalisso.robotassignment.service.internal.model.Direction;
 import com.nalisso.robotassignment.service.internal.model.Position;
 import com.nalisso.robotassignment.service.internal.model.TurnCommand;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 final class RobotServiceMoveAndTurnTests extends RobotServiceTests {
 
     @Test
@@ -18,8 +17,8 @@ final class RobotServiceMoveAndTurnTests extends RobotServiceTests {
         Position expectedPosition = new Position(3, 4);
         Direction currentDirection = turn(initialDirection, TurnCommand.LEFT);
         Position currentPosition = move(initialPosition, 10, currentDirection);
-        Assertions.assertEquals(expectedDirection, currentDirection);
-        Assertions.assertEquals(expectedPosition, currentPosition);
+        assertEquals(expectedDirection, currentDirection);
+        assertEquals(expectedPosition, currentPosition);
     }
 
     @Test
@@ -38,8 +37,8 @@ final class RobotServiceMoveAndTurnTests extends RobotServiceTests {
         currentPosition = move(currentPosition, 5, currentDirection, 4);
         currentDirection = turn(currentDirection, TurnCommand.LEFT);
         currentPosition = move(currentPosition, 5, currentDirection, 2);
-        Assertions.assertEquals(expectedDirection, currentDirection);
-        Assertions.assertEquals(expectedPosition, currentPosition);
+        assertEquals(expectedDirection, currentDirection);
+        assertEquals(expectedPosition, currentPosition);
     }
 
 }

@@ -20,8 +20,10 @@ public class RobotServiceImpl implements RobotService {
                 currentDirecton = turn(currentDirecton, TurnCommand.getTurnCommand(command));
             } else if (MoveCommand.isMoveCommand(command)) {
                 currentPosition = move(currentPosition, matrixSize, currentDirecton);
+            } else {
+                //Do nothing if faulty command? Check with stakeholders
+                logger.warn("An unknown command was provided \"{}\", ignore it.", command);
             }
-            //Do nothing if faulty command?
         }
         return new MovementResult(currentPosition, currentDirecton);
     }
@@ -29,10 +31,8 @@ public class RobotServiceImpl implements RobotService {
     public Direction turn(Direction currentDirection, TurnCommand turnCommand) {
         if (TurnCommand.LEFT == turnCommand) {
             return turn(currentDirection.getIntValue() - 1);
-        } else if (TurnCommand.RIGHT == turnCommand) {
-            return turn(currentDirection.getIntValue() + 1);
         }
-        throw new IllegalArgumentException("Only TurnCommand.LEFT and TurnCommand.RIGHT are supported.");
+        return turn(currentDirection.getIntValue() + 1);
     }
 
     public Position move(Position currentPosition, int matrixSize, Direction direction) {
@@ -40,18 +40,22 @@ public class RobotServiceImpl implements RobotService {
             case NORTH:
                 if ((currentPosition.getYPosition() > 0))
                     return new Position(currentPosition.getXPosition(), currentPosition.getYPosition() - 1);
+                break;
             case EAST:
                 if ((currentPosition.getXPosition() < matrixSize))
                     return new Position(currentPosition.getXPosition() + 1, currentPosition.getYPosition());
+                break;
             case SOUTH:
                 if (currentPosition.getYPosition() < matrixSize)
                     return new Position(currentPosition.getXPosition(), currentPosition.getYPosition() + 1);
+                break;
             case WEST:
                 if (currentPosition.getXPosition() > 0)
                     return new Position(currentPosition.getXPosition() - 1, currentPosition.getYPosition());
-
+                break;
         }
-        logger.warn("The robot tried to move but hit the wall, ouch!");
+        //Do nothing if moving out of matrix? Check with stakeholders
+        logger.warn("The robot tried moving out of the matrix, ignore it and stay in position.");
         return currentPosition;
     }
 

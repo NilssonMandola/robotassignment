@@ -3,9 +3,10 @@ package com.nalisso.robotassignment.unittest;
 import com.nalisso.robotassignment.service.internal.model.Direction;
 import com.nalisso.robotassignment.service.internal.model.MovementResult;
 import com.nalisso.robotassignment.service.internal.model.Position;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 final class RobotServiceExecuteCommandsTests extends RobotServiceTests {
@@ -18,7 +19,19 @@ final class RobotServiceExecuteCommandsTests extends RobotServiceTests {
         Direction expectedDirection = Direction.NORTH;
         char[] commands = "LFRRFL".toCharArray();
         MovementResult movementResult = executeCommands(initialPosition, 5, initialDirection, commands);
-        Assertions.assertEquals(expectedDirection, movementResult.getDirection());
-        Assertions.assertEquals(expectedPosition, movementResult.getPosition());
+        assertEquals(expectedDirection, movementResult.getDirection());
+        assertEquals(expectedPosition, movementResult.getPosition());
+    }
+
+    @Test
+    void testSeriesOfMultipleForward() {
+        Position initialPosition = new Position(2, 2);
+        Position expectedPosition = new Position(2, 0);
+        Direction initialDirection = Direction.NORTH;
+        Direction expectedDirection = Direction.NORTH;
+        char[] commands = "FFFFFFFF".toCharArray();
+        MovementResult movementResult = executeCommands(initialPosition, 5, initialDirection, commands);
+        assertEquals(expectedDirection, movementResult.getDirection());
+        assertEquals(expectedPosition, movementResult.getPosition());
     }
 }

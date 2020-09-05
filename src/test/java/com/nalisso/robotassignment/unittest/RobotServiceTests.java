@@ -27,7 +27,7 @@ class RobotServiceTests {
         logger.info("Began facing {}", currentDirection);
         for (int i = 0; i < amountOfTurns; i++) {
             currentDirection = robotService.turn(currentDirection, turnCommand);
-            logger.info("Currently facing {}", currentDirection);
+            logger.debug("Currently facing {}", currentDirection);
         }
         logger.info("Ended up facing {}", currentDirection);
         return currentDirection;
@@ -42,7 +42,7 @@ class RobotServiceTests {
         logger.info("Began on ({},{})", currentPosition.getXPosition(), currentPosition.getYPosition());
         for (int i = 0; i < amountOfMoves; i++) {
             currentPosition = robotService.move(currentPosition, matrixSize, direction);
-            logger.info("Currently on ({},{})", currentPosition.getXPosition(), currentPosition.getYPosition());
+            logger.debug("Currently on ({},{})", currentPosition.getXPosition(), currentPosition.getYPosition());
         }
         logger.info("Ended up on ({},{})", currentPosition.getXPosition(), currentPosition.getYPosition());
         return currentPosition;

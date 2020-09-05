@@ -5,7 +5,7 @@ public class MovementResult {
     private final Position position;
     private final Direction direction;
 
-    public MovementResult(Position position, Direction direction){
+    public MovementResult(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
     }

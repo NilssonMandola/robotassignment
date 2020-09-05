@@ -1,0 +1,7 @@
+springdoc:
+  showActuator: true
+
+#TODO use an exception handler instead of exposing all errors messages
+server:
+  error:
+    include-message: always

@@ -26,4 +26,9 @@ public class Position {
         return xPosition == position.xPosition &&
                 yPosition == position.yPosition;
     }
+
+    @Override
+    public String toString() {
+        return String.format("(%s, %s)", xPosition, yPosition);
+    }
 }
